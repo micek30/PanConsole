@@ -1,5 +1,4 @@
-package pl.PanConsole;
-
+package pl.PanConsole.CardsUsers;
 import java.security.SecureRandom;
 
 public class Talia {

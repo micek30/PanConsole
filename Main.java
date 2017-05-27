@@ -1,5 +1,7 @@
 package pl.PanConsole;
 
+import pl.PanConsole.CardsUsers.*;
+import pl.PanConsole.Game.*;
 import java.util.Scanner;
 
 public class Main {
@@ -26,6 +28,8 @@ public class Main {
                 Player player2=new Player("Player 2");
 
                 RozdawanieKart.RozdajNaDwoch(talia,player1,player2);
+                game.GameFor2(player1,player2);
+
                 break;
             }
             case 3:{
@@ -46,5 +50,5 @@ public class Main {
 
         }//koniec rozdawania kart
 
-    }
+    }//koniec main
 }

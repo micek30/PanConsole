@@ -1,4 +1,4 @@
-package pl.PanConsole;
+package pl.PanConsole.CardsUsers;
 
 public class Karta {
     private String znak;
@@ -12,6 +12,12 @@ public class Karta {
         this.znak = znak;
         this.kolor=kolor;
         this.wartosc=value;
+    }
+    public Karta(Karta Card)
+    {
+        this.znak = Card.getZnak();
+        this.kolor=Card.getColor();
+        this.wartosc=Card.getValue();
     }
 
     public String toString(){
