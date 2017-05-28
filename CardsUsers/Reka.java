@@ -21,7 +21,7 @@ public class Reka{
         for(int i=index;i<ileKart;i++){
             reka[i]=reka[i+1];
         }
-        //this.setIleKart(ileKart-1);
+        this.setIleKart(ileKart-1);
         return temp;
     }
 

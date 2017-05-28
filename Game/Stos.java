@@ -48,9 +48,9 @@ public class Stos {
 
     // Metoda zdejmująca ze stosu
     Karta Pop() throws IndexOutOfBoundsException {
-        if (firstFree <= 0) {
+        if (firstFree <= 1) {
             throw new IndexOutOfBoundsException(
-                    "Stos jest pusty, operacja nie powiodła się");
+                    "Nie można zdjąć kart ze stosu");
         }
 
         Karta temp =new Karta(stosik[firstFree - 1].getZnak(),stosik[firstFree - 1].getColor(),stosik[firstFree - 1].getValue()) ;
@@ -59,7 +59,7 @@ public class Stos {
     }
 
     // Metoda wyświetlająca zawartość stosu
-    void display() throws IndexOutOfBoundsException {
+    void displayStack() throws IndexOutOfBoundsException {
         if (firstFree == 0) {
             throw new IndexOutOfBoundsException(
                     "Stos jest pusty, operacja nie powiodła się");
@@ -67,12 +67,23 @@ public class Stos {
 
         int temp = firstFree - 1;
         do {
-            System.out.println(stosik[temp]);
+            System.out.print(stosik[temp]+" ");
             temp--;
         } while (temp > -1);
 
     }
+    // Metoda wyświetlająca wierzchołek stosu
+    Karta display() throws IndexOutOfBoundsException {
+        if (firstFree == 0) {
+            throw new IndexOutOfBoundsException(
+                    "Stos jest pusty, operacja nie powiodła się");
+        }
 
+
+        return stosik[firstFree-1];
+
+
+    }
     /* Metoda wielokrotnego zdjęcia
     void multiPop(int k) {
         if (k < firstFree) {

@@ -41,5 +41,18 @@ public class Karta {
         return this;
     }
 
+    public static boolean Compare2Cards(Karta a,Karta b)
+    {
+        if (
+                a.getZnak()==b.getZnak()&&
+                a.getColor()==b.getColor()&&
+                a.getValue()==b.getValue()
+            ){
+            System.out.println(a.getZnak()+" "+a.getColor()+" druga "+b.getZnak()+" "+b.getColor());
+            return true;}
+        else return false;
+
+    }
+
 
 }

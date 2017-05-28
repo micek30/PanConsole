@@ -6,61 +6,87 @@ import java.util.Scanner;
 
 public class game {
 
-    /*private int find2Caro(Player p1,Player p2){
-        int indexOf2Caro;
-        Karta Card2Caro=new Karta("2","karo",2);
-        for(int i=0;i<p1.getIleKart();i++){
-            if(p1.ViewKartaFromReka(i)="2 karo");
-
-        }
-
-    }*/
-
     public static void GameFor2(Player player1,Player player2) {
         Stos stol= new Stos();
-        Karta NaStos,tempNaStos;
-
+        int PushOrPop;
+        stol.Push(CardOper.find2Caro(player1,player2));
         do{
-            //try{
-                //Runtime.getRuntime().exec("cls");
-                clearScreen();
-                //ruch pierwszego gracza
-                System.out.println("Karty Pierwszego gracza");
-                player1.PrintHand();
-                tempNaStos=new Karta(player1.TakeKartaFromReka(WybierzKarte()));
-                NaStos=new Karta(tempNaStos.getZnak(),tempNaStos.getColor(),tempNaStos.getValue());
-                stol.Push(NaStos);
-                //Runtime.getRuntime().exec("cls");
-                clearScreen();
-                stol.display();
-                //ruch drugiego gracza
-                System.out.println("Karty drugiego gracza");
-                player2.PrintHand();
-                tempNaStos=new Karta(player2.TakeKartaFromReka(WybierzKarte()));
-                NaStos=new Karta(tempNaStos.getZnak(),tempNaStos.getColor(),tempNaStos.getValue());
-                stol.Push(NaStos);
+                System.out.println(stol.display());
+                player1.PrintHand(); System.out.println();
+                PushOrPop=Decyzja();
+                if(PushOrPop==2){
+                    RuchGracza(player1,stol);
+                }else{
+                    ZbierzKarty(player1,stol);
+                }
 
-
-            /*}catch (IOException e){
-                e.printStackTrace();
-            }*/
+                System.out.println(stol.display());
+                player1.PrintHand();System.out.println();
+                PushOrPop=Decyzja();
+                if(PushOrPop==2) {
+                    RuchGracza(player2, stol);
+                }else{
+                    ZbierzKarty(player2,stol);
+                }
 
         }while(player1.getIleKart()!=0 && player2.getIleKart()!=0);
-
-
     }//koniec GameFor2
+
+
     public static int WybierzKarte(){
         Scanner odczyt=new Scanner(System.in);
         int chooseCard; String chooseCardTemp;
-        System.out.println("Wybierz kartę:  ");
+        System.out.println("\nWybierz kartę:  ");
         chooseCardTemp = odczyt.nextLine();
         chooseCard= Integer.parseInt(chooseCardTemp);
         chooseCard-=1;
         return chooseCard;
 
     }//koniec WybierzKarte
+    public static int Decyzja(){
+        Scanner odczyt=new Scanner(System.in);
+        String TempDecyzja;int decyzja=0;
+        do{
+            System.out.println("1-zebrać karty 2-położyć kartę");
+            TempDecyzja=odczyt.nextLine();
+            decyzja=Integer.parseInt(TempDecyzja);
+        }while (decyzja<1&&decyzja>2);
+
+        return decyzja;
+    }
     public static void clearScreen() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+        for(int clear = 0; clear < 20; clear++)
+        {
+            System.out.println("\b") ;
+        }
+    }
+
+    //ruch gracza
+    public static void RuchGracza(Player player,Stos stol){
+       Karta NaStos=new Karta("0","0",0);
+       Karta tempNaStos=new Karta("0","0",0);
+       int index=0;
+        do {
+            clearScreen();
+            System.out.println(stol.display());
+            //ruch pierwszego gracza
+            System.out.println("\nKarty Pierwszego gracza");
+            player.PrintHand();
+            index=WybierzKarte();
+            tempNaStos = new Karta(player.ViewKartaFromReka(index));
+        }while (CardOper.checkBeforePush(tempNaStos,stol.display()));
+        tempNaStos = new Karta(player.TakeKartaFromReka(index));
+        NaStos = new Karta(tempNaStos.getZnak(), tempNaStos.getColor(), tempNaStos.getValue());
+        stol.Push(NaStos);
+        clearScreen();
+
+    }//koniec RuchGracza
+
+    public static void ZbierzKarty(Player player,Stos stol){
+        clearScreen();
+        player.addKarta(stol.Pop());
+        player.addKarta(stol.Pop());
+        player.addKarta(stol.Pop());
+        clearScreen();
     }
 }
