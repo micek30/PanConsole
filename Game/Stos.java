@@ -5,29 +5,17 @@ public class Stos {
 
     // Zdefiniowanie tablicy i elementów odpowiedzialnych za wierzchołek.
      Karta[] stosik;
-    public int  firstFree;
-    public int SizeofStosik;
+    private int  firstFree;
+    private int SizeofStosik;
 
     // Konstruktor, który zainicjuje wierzchołek i stos o odpowiedniej
     // wielkości.
     public Stos() {
         stosik = new Karta[32];
-        firstFree = 0;
+        firstFree=0;
         SizeofStosik=0;
     }
 
-    // Metoda zwracająca maksymalny rozmiar stosu
-    int getMaximumStackSize() {
-        return stosik.length;
-    }
-
-    // Metoda zwracająca prawdę, jeżeli stos jest pusty
-    boolean isEmpty() {
-        if (firstFree == 0) {
-            return true;
-        } else
-            return false;
-    }
 
     // Metoda zwracająca rozmiar stosu
     int getSize() {
@@ -47,7 +35,7 @@ public class Stos {
     }
 
     // Metoda zdejmująca ze stosu
-    Karta Pop() throws IndexOutOfBoundsException {
+    Karta Pop() {
         if (firstFree <= 1) {
             throw new IndexOutOfBoundsException(
                     "Nie można zdjąć kart ze stosu");
@@ -73,35 +61,26 @@ public class Stos {
 
     }
     // Metoda wyświetlająca wierzchołek stosu
-    Karta display() throws IndexOutOfBoundsException {
-        if (firstFree == 0) {
-            throw new IndexOutOfBoundsException(
-                    "Stos jest pusty, operacja nie powiodła się");
+    void display() {
+        for (int i = 3; i >0; i--)
+        {
+            if (firstFree == 1 && i>1) {
+               continue;
+            }else if(firstFree==2 && i>2){
+                continue;
         }
 
-
-        return stosik[firstFree-1];
-
-
-    }
-    /* Metoda wielokrotnego zdjęcia
-    void multiPop(int k) {
-        if (k < firstFree) {
-            for (int i = k; i > 0; i--) {
-                System.out.println(Pop());
+                {
+                System.out.print(" "+stosik[firstFree - i]+" ");
             }
         }
+        System.out.println();
+
     }
+    Karta LastCard() {
+        return stosik[firstFree - 1];
 
-     Metoda czyszcząca stos
-    void clear() {
-        for (int i = 0; i < firstFree; i++) {
-            stosik.;
-
-        }
-
-        firstFree = 0;
-    }*/
+    }
 
     public Karta[] getStosik() {
         return stosik;

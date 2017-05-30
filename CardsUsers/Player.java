@@ -39,6 +39,10 @@ public class Player {
         return this.reka.getIleKart();
     }
 
+    public String getNazwaGracza() {
+        return NazwaGracza;
+    }
+
     public void setNazwaGracza(String nazwaGracza) {
         this.NazwaGracza = nazwaGracza;
     }

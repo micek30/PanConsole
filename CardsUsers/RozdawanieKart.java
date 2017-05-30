@@ -41,8 +41,8 @@ public class RozdawanieKart {
         for(int i=0;i<8;i++){
             Karta tempP1 =new Karta(t2.talia[i].getZnak(),t2.talia[i].getColor(),t2.talia[i].getValue());
             Karta tempP2 =new Karta(t2.talia[i+8].getZnak(),t2.talia[i+8].getColor(),t2.talia[i+8].getValue());
-            Karta tempP3 =new Karta(t2.talia[i+8].getZnak(),t2.talia[i+8].getColor(),t2.talia[i+8].getValue());
-            Karta tempP4 =new Karta(t2.talia[i+8].getZnak(),t2.talia[i+8].getColor(),t2.talia[i+8].getValue());
+            Karta tempP3 =new Karta(t2.talia[i+16].getZnak(),t2.talia[i+16].getColor(),t2.talia[i+16].getValue());
+            Karta tempP4 =new Karta(t2.talia[i+24].getZnak(),t2.talia[i+24].getColor(),t2.talia[i+24].getValue());
 
             p1.addKarta(tempP1);
             p2.addKarta(tempP2);

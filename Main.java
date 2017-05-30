@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
         String tempIleGraczy;
-        int ileGraczy=3;
+        int ileGraczy=0;
         //Tworzenie i tasowanie talii
         Talia talia=new Talia();
 	    talia.shuffle();
@@ -18,8 +18,12 @@ public class Main {
 	    do {
             System.out.println("Podaj ilość graczy 2-4 \n");
             tempIleGraczy = odczyt.nextLine();
-            ileGraczy = Integer.parseInt(tempIleGraczy);
-        }while(ileGraczy>4 &&ileGraczy<2);
+            try {
+                ileGraczy = Integer.parseInt(tempIleGraczy);
+            }catch (NumberFormatException e){
+                System.out.println("Podana wartość nie jest liczbą.");
+            }
+        }while(ileGraczy>4 || ileGraczy<2);
 
 	    //utworzenie i rozdanie kart między graczy
         switch (ileGraczy){
@@ -37,6 +41,7 @@ public class Main {
                 Player player2=new Player("Player 2");
                 Player player3=new Player("Player 3");
                 RozdawanieKart.RozdajNaTrzech(talia,player1,player2,player3);
+                game.GameFor3(player1,player2,player3);
                 break;
             }
             case 4:{
@@ -45,8 +50,12 @@ public class Main {
                 Player player3=new Player("Player 3");
                 Player player4=new Player("Player 4");
                 RozdawanieKart.RozdajNaCzterech(talia,player1,player2,player3,player4);
+
+                game.GameFor4(player1,player2,player3,player4);
                 break;
+
             }
+            default:System.out.println("Koniec");
 
         }//koniec rozdawania kart
 
